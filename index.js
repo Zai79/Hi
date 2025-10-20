@@ -77,10 +77,16 @@ async function callOpenAIChat(systemPrompt, userText) {
     temperature: 0.9,
     top_p: 0.95,
 
-    // 🧠 خيارات جديدة خاصة بـ GPT-5:
-    verbosity: "low",           // "low" = رد قصير ومركّز، "high" = كلام أكثر
-    reasoning_effort: "medium"  // "minimal" | "low" | "medium" | "high"
-  };
+    const body = {
+  model: "gpt-4o-mini", // أو "gpt-4o" لو تبي الأقوى
+  messages: [
+    { role: "system", content: systemPrompt },
+    { role: "user", content: userText }
+  ],
+  max_tokens: 160,
+  temperature: 0.9,
+  top_p: 0.95
+};
 
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
