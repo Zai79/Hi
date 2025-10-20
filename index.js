@@ -54,7 +54,12 @@ User message: "${userMessage}"
       }
     }
 
-    await message.reply({ content: finalReply });
+    try {
+  await message.reply(finalReply);
+} catch (err) {
+  console.warn("⚠️ Reply failed, sending normal message instead.");
+  await message.channel.send(finalReply);
+    }
   } catch (err) {
     console.error('Error handling message:', err);
   }
