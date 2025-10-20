@@ -120,3 +120,8 @@ async function checkModeration(text) {
 }
 
 client.login(DISCORD_TOKEN);
+// ====== لإبقاء Render شغال ======
+import express from "express";
+const app = express();
+app.get("/", (req, res) => res.send("Miko bot is alive!"));
+app.listen(process.env.PORT || 3000, () => console.log("Web server running"));
